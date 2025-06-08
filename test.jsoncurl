@@ -1,0 +1,1 @@
+{  "uni": "University of Toronto",  "program": "Computer Science",  "gpa": 92.5,  "extra": "Hackathon winner, Coding club",  "awards": "Deans List",  "location": "Toronto, ON",  "other": "Internship at Google",  "year": 2024} -X POST http://localhost:8080/applications   -H Content-Type: application/json   -d @test.json
