@@ -7,7 +7,7 @@ import { getApplications, type Application } from '../../api';
 
 function CardDisplay() {
 
-    // Hooks of how many pages currently, and how many applications per pag
+    // Hooks of how many pages currently, and how many applications per page
     const [currentPage, setCurrentPage] = useState(1);
     const cardsPerPage = 8; 
 
@@ -28,6 +28,7 @@ function CardDisplay() {
     ,[])
 
     // Find how many pages we have based on applications (rounding up)
+    // Note: this is determined by cardsPerPage
     const totalPages = Math.ceil((cards?.length || 0) / cardsPerPage);
 
 
@@ -35,6 +36,7 @@ function CardDisplay() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
 
 
+    // UseState for search
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState<Application[]>([]);
 
@@ -43,10 +45,16 @@ function CardDisplay() {
         //Check if search is not empty
         if (search.trim() !== "") {
 
+            // Turn all letter to lowercase and split into arry by words
             const searchTerms = search.toLowerCase().split(' ');
+            
+            // Filter the cards based on searchTerms checking if the application
+            // contains the search terms
             const filteredResults = cards.filter(app => {
                 const uniLower = app.uni.toLowerCase();
                 const programLower = app.program.toLowerCase();
+
+                //Check if searched term is in university or program
                 return searchTerms.every(term => 
                     uniLower.includes(term) || programLower.includes(term)
                 );
@@ -69,7 +77,8 @@ function CardDisplay() {
                 onChange={(e) => setSearch(e.target.value)}
             />
             <div className="w-[99%] px-2 sm:px-4">
-                {/* Cards Grid */}
+                {/* Cards Grid*/}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-20">
                     {searchResults.slice(indexOfFirstCard, indexOfLastCard).map((app) => (
                         <Card key={app.id} 

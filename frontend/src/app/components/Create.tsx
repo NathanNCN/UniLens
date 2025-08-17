@@ -65,7 +65,7 @@ function Create() {
 
     useEffect(() => {
 
-        // Function to scan database to check if users as already submited an application
+        // Function to scan database to check if users has already submited an application
         const checkExistingSubmission = async () => {
 
             // Check if user is currently not logged in

@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 // const to store paths of images based on university name
+// TODO/NEXTTIME: Clean this up by adding inside a type file to acces it there 
 const logos: Record<string ,string[]> = {
     "University of Waterloo": ["./images/crest/uwCrest.svg", "./images/banners/uwBanner.jpg"],
     "University of Toronto": ["./images/crest/uoftCrest.png", "./images/banners/UoftBanner.jpg"],
@@ -42,6 +43,7 @@ type App = {
     year: number;
 }
 
+//card component to show the application that takes in app props
 function Card(props: App) {
 
     //Hook for modal
@@ -61,11 +63,13 @@ function Card(props: App) {
             {/* Content */}
             <div className="p-4 sm:p-5 md:p-6 h-[calc(500px-12rem)]">
                 <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                    {/* School Logo */}
                     <img 
                         src={logos[props.uni][0]}
                         alt="School Logo" 
                         className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16"
                     />
+                    {/* School Name and Program */}
                     <div className="text-center sm:text-left h-[100px]">
                         <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-emerald-800">{props.uni}</h2>
                         <p className="text-sm sm:text-base md:text-lg text-emerald-600">{props.program}</p>

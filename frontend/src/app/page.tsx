@@ -24,11 +24,11 @@ export default function Home() {
 
       // Try to load applications
       try {
-        
 
+        // Call API to get applications
         await getApplications();
-        // Set loading false, once render is finished
 
+        // Set loading false, once render is finished
         setIsLoading(false)
 
       } catch {
